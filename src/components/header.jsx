@@ -10,13 +10,11 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 
-import { useTheme } from '@mui/material/styles';
+import Logo from './logo';
 
 const pages = ['Home', 'About', 'How help', 'Packaging', 'Cargo details', 'Contacts'];
 
 const Navigation = () => {
-  const theme = useTheme();
-
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
@@ -33,18 +31,7 @@ const Navigation = () => {
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Typography
-            variant="p"
-            noWrap
-            component="div"
-            color={theme.palette.primary.gray}
-            sx={{ mr: 2,
-              fontSize: { xs: '16px', md: '30px' },
-            }}
-          >
-            Drohobych City Council
-          </Typography>
-
+          <Logo />
           <Box sx={{ flexGrow: 1,
             display: { xs: 'flex', md: 'none' },
             justifyContent: 'flex-end',
