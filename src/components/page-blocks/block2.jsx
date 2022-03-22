@@ -14,7 +14,7 @@ export default function Block2() {
                         height: '400px',
                     }}
                 >
-                    we are very gratefull for your help
+                    Block2
                 </Typography>
             </PageBlock>
         </>

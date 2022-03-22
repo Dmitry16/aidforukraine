@@ -9,11 +9,12 @@ export default function PageBlock({children, img}) {
         display: 'flex',
         flexWrap: 'wrap',
         '& > :not(style)': {
-          m: 1,
-          width: '100%',
-          height: '50vh',
-          margin: 0,
-          borderRadius: 0,
+            m: 1,
+            width: '100%',
+            height: '50vh',
+            margin: 0,
+            borderRadius: 0,
+            border: '1px solid gray'
         },
       }}
     >

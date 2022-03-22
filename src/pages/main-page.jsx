@@ -1,5 +1,5 @@
 import Header from '../containers/header';
-import { Block1, Block2, Block3, Block4 } from '../components/page-blocks';
+import { Block1, Block2, Block3, Block4, Block5, Block6 } from '../components/page-blocks';
 
 function MainPage() {
   return (
@@ -9,6 +9,8 @@ function MainPage() {
         <Block2 />
         <Block3 />
         <Block4 />
+        <Block5 />
+        <Block6 />
     </>
   );
 }

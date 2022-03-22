@@ -11,7 +11,7 @@ export default function Block4() {
                     component="div"
                     sx={{ mr: 2, display: { xs: 'none', md: 'flex' }}}
                 >
-                    LOGO
+                    Block4
                 </Typography>
             </PageBlock>
         </>

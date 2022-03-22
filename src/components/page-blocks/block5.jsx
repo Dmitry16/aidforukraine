@@ -1,7 +1,7 @@
 import Typography from '@mui/material/Typography';
 import PageBlock from '../page-block';
 
-export default function Block3() {
+export default function Block5() {
     return (
         <>
             <PageBlock>
@@ -11,7 +11,7 @@ export default function Block3() {
                     component="div"
                     sx={{ mr: 2, display: { xs: 'none', md: 'flex' }}}
                 >
-                    Block3
+                    Block5
                 </Typography>
             </PageBlock>
         </>

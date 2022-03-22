@@ -1,6 +1,7 @@
 {
   "name": "aidforukraine",
   "version": "0.1.0",
+  "homepage": "https://dmitry16.github.io/aidforukraine/",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.8.2",
@@ -11,6 +12,7 @@
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
     "formik": "^2.2.9",
+    "gh-pages": "^3.2.3",
     "i18next": "^21.6.14",
     "i18next-http-backend": "^1.4.0",
     "react": "^17.0.2",
@@ -21,6 +23,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
