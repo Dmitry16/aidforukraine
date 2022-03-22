@@ -10,7 +10,7 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 
-import Logo from './logo';
+import Logo from '../components/logo';
 
 const pages = ['Home', 'About', 'How help', 'Packaging', 'Cargo details', 'Contacts'];
 
