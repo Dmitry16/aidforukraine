@@ -10,9 +10,13 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 
-const pages = ['Products', 'Pricing', 'Blog'];
+import { useTheme } from '@mui/material/styles';
+
+const pages = ['Home', 'About', 'How help', 'Packaging', 'Cargo details', 'Contacts'];
 
 const Navigation = () => {
+  const theme = useTheme();
+
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
@@ -24,19 +28,27 @@ const Navigation = () => {
   };
 
   return (
-    <AppBar position="static" colorSecondary sx={{background: 'none', color: '#000'}}>
+    <AppBar position="fixed"
+      sx={{background: '#fff', color: '#000'}}
+    >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
-            variant="h6"
+            variant="p"
             noWrap
             component="div"
-            sx={{ mr: 2, display: { xs: 'none', md: 'flex' }}}
+            color={theme.palette.primary.gray}
+            sx={{ mr: 2,
+              fontSize: { xs: '16px', md: '30px' },
+            }}
           >
-            LOGO
+            Drohobych City Council
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+          <Box sx={{ flexGrow: 1,
+            display: { xs: 'flex', md: 'none' },
+            justifyContent: 'flex-end',
+          }}>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -52,36 +64,36 @@ const Navigation = () => {
               anchorEl={anchorElNav}
               anchorOrigin={{
                 vertical: 'bottom',
-                horizontal: 'left',
+                horizontal: 'right',
               }}
               keepMounted
               transformOrigin={{
                 vertical: 'top',
-                horizontal: 'left',
+                horizontal: 'right',
               }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{
                 display: { xs: 'block', md: 'none' },
+                width: '250px',
               }}
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                  <Typography component="span" sx={{
+                    padding: '5px',
+                  }}>
+                    {page}
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
-
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
-          >
-            LOGO
-          </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          
+          <Box sx={{ flexGrow: 1,
+            display: { xs: 'none', md: 'flex' },
+            justifyContent: 'flex-end',
+          }}>
             {pages.map((page) => (
               <Button
                 key={page}

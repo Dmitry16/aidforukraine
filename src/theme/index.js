@@ -7,6 +7,7 @@ export const BLACK_COLOR = '#000000';
 export const LOADING_SKELETON_COLOR = '#FAF0F5';
 export const DEEP_SPACE_SPARKLE_COLOR = '#455E64';
 export const LIGHT_GRAY_COLOR = '#0000001F';
+export const GRAY_COLOR = '#666666';
 
 const theme = createTheme({
   palette: {
@@ -17,6 +18,7 @@ const theme = createTheme({
       main: PRIMARY_COLOR,
       dark: PRIMARY_DARK_COLOR,
       light: '#F7E6EF',
+      gray: GRAY_COLOR,
     },
     secondary: {
       main: '#78949b',
@@ -26,7 +28,7 @@ const theme = createTheme({
   },
   typography: {
     h1: {
-      fontFamily: 'Roboto',
+      fontFamily: 'Source Sans Pro", sans-serif',
       fontStyle: 'normal',
       fontWeight: 300,
       fontSize: '96px',
@@ -35,7 +37,7 @@ const theme = createTheme({
       color: BLACK_COLOR,
     },
     h2: {
-      fontFamily: 'Roboto',
+      fontFamily: 'Source Sans Pro", sans-serif',
       fontStyle: 'normal',
       fontWeight: 300,
       fontSize: '60px',
@@ -44,7 +46,7 @@ const theme = createTheme({
       color: BLACK_COLOR,
     },
     h3: {
-      fontFamily: 'Roboto',
+      fontFamily: 'Source Sans Pro", sans-serif',
       fontStyle: 'normal',
       fontWeight: 'normal',
       fontSize: '48px',
@@ -52,7 +54,7 @@ const theme = createTheme({
       color: BLACK_COLOR,
     },
     h4: {
-      fontFamily: 'Roboto',
+      fontFamily: 'Source Sans Pro", sans-serif',
       fontStyle: 'normal',
       fontWeight: 'normal',
       fontSize: '34px',
@@ -60,7 +62,7 @@ const theme = createTheme({
       color: BLACK_COLOR,
     },
     h5: {
-      fontFamily: 'Roboto',
+      fontFamily: 'Source Sans Pro", sans-serif',
       fontStyle: 'normal',
       fontWeight: 'normal',
       fontSize: '24px',
@@ -69,7 +71,7 @@ const theme = createTheme({
       color: BLACK_COLOR,
     },
     h6: {
-      fontFamily: 'Roboto',
+      fontFamily: 'Source Sans Pro", sans-serif',
       fontStyle: 'normal',
       fontWeight: 500,
       fontSize: '20px',
@@ -77,7 +79,7 @@ const theme = createTheme({
       letterSpacing: '0.15px',
     },
     subtitle1: {
-      fontFamily: 'Roboto',
+      fontFamily: 'Source Sans Pro", sans-serif',
       fontStyle: 'normal',
       fontWeight: 'normal',
       fontSize: '16px',
@@ -86,7 +88,7 @@ const theme = createTheme({
       color: BLACK_COLOR,
     },
     subtitle2: {
-      fontFamily: 'Roboto',
+      fontFamily: 'Source Sans Pro", sans-serif',
       fontStyle: 'normal',
       fontWeight: 500,
       fontSize: '14px',
@@ -94,7 +96,7 @@ const theme = createTheme({
       letterSpacing: '0.1px',
     },
     body1: {
-      fontFamily: 'Roboto',
+      fontFamily: 'Source Sans Pro", sans-serif',
       fontStyle: 'normal',
       fontWeight: 'normal',
       fontSize: '16px',
@@ -103,7 +105,7 @@ const theme = createTheme({
       color: BLACK_COLOR,
     },
     body2: {
-      fontFamily: 'Roboto',
+      fontFamily: 'Source Sans Pro", sans-serif',
       fontStyle: 'normal',
       fontWeight: 'normal',
       fontSize: '14px',
@@ -112,7 +114,7 @@ const theme = createTheme({
       color: BLACK_COLOR,
     },
     button: {
-      fontFamily: 'Roboto',
+      fontFamily: 'Source Sans Pro", sans-serif',
       fontStyle: 'normal',
       fontWeight: 500,
       fontSize: '14px',
@@ -121,7 +123,7 @@ const theme = createTheme({
       textTransform: 'uppercase',
     },
     caption: {
-      fontFamily: 'Roboto',
+      fontFamily: 'Source Sans Pro", sans-serif',
       fontStyle: 'normal',
       fontWeight: 'normal',
       fontSize: '12px',
@@ -130,7 +132,7 @@ const theme = createTheme({
       color: BLACK_COLOR,
     },
     overline: {
-      fontFamily: 'Roboto',
+      fontFamily: 'Source Sans Pro", sans-serif',
       fontStyle: 'normal',
       fontWeight: 500,
       fontSize: '10px',
@@ -145,7 +147,7 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           position: 'relative',
-          fontFamily: 'Roboto',
+          fontFamily: 'Source Sans Pro", sans-serif',
           fontStyle: 'normal',
           fontWeight: 500,
           fontSize: '14px',
@@ -209,7 +211,7 @@ const theme = createTheme({
           order: 0,
           flexGrow: 0,
           margin: '0px 0px',
-          fontFamily: 'Roboto',
+          fontFamily: 'Source Sans Pro", sans-serif',
           fontStyle: 'normal',
           fontWeight: 500,
           fontSize: '14px',
@@ -259,7 +261,7 @@ const theme = createTheme({
 
           /* Fonter/Sub 1 */
 
-          fontFamily: 'Roboto',
+          fontFamily: 'Source Sans Pro", sans-serif',
           fontStyle: 'normal',
           fontWeight: 'normal',
           fontSize: '16px',
@@ -300,7 +302,7 @@ const theme = createTheme({
 
           /* Fonter/Sub 1 */
 
-          fontFamily: 'Roboto',
+          fontFamily: 'Source Sans Pro", sans-serif',
           fontStyle: 'normal',
           fontWeight: 'normal',
           fontSize: '16px',
@@ -319,7 +321,7 @@ const theme = createTheme({
       styleOverrides: {
         filled: {
           transform: 'translate(16px, 16px) scale(1)',
-          fontFamily: 'Roboto',
+          fontFamily: 'Source Sans Pro", sans-serif',
           fontStyle: 'italic',
           fontWeight: 'normal',
           fontSize: '16px',
@@ -335,7 +337,7 @@ const theme = createTheme({
           color: 'rgba(0, 0, 0, 0.87)',
           '&$shrink': {
             transform: 'translate(16px, 8px) scale(0.75)',
-            fontFamily: 'Roboto',
+            fontFamily: 'Source Sans Pro", sans-serif',
             fontStyle: 'normal',
             fontSize: '12px',
             lineHeight: '16px',
@@ -360,7 +362,7 @@ const theme = createTheme({
           },
         },
         outlined: {
-          fontFamily: 'Roboto',
+          fontFamily: 'Source Sans Pro", sans-serif',
           fontStyle: 'italic',
           fontWeight: 'normal',
           fontSize: '16px',
@@ -373,7 +375,7 @@ const theme = createTheme({
           color: 'rgba(0, 0, 0, 0.87)',
           '&$shrink': {
             transform: 'translate(16px, -6px) scale(0.75)',
-            fontFamily: 'Roboto',
+            fontFamily: 'Source Sans Pro", sans-serif',
             fontStyle: 'normal',
             fontSize: '12px',
             lineHeight: '16px',
@@ -394,7 +396,7 @@ const theme = createTheme({
         },
         shrink: {
           transform: 'translate(16px, 8px) scale(0.75)',
-          fontFamily: 'Roboto',
+          fontFamily: 'Source Sans Pro", sans-serif',
           fontStyle: 'normal',
           fontSize: '12px',
           lineHeight: '16px',
@@ -419,7 +421,7 @@ const theme = createTheme({
     MuiFormHelperText: {
       styleOverrides: {
         root: {
-          fontFamily: 'Roboto',
+          fontFamily: 'Source Sans Pro", sans-serif',
           fontStyle: 'normal',
           fontWeight: 'normal',
           fontSize: '12px',
