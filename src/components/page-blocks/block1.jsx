@@ -1,7 +1,7 @@
+import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import PageBlock from '../page-block';
 import Image from '../../assets/img/heros.jpg';
-import Box from '@mui/material/Box';
 
 export default function Block1() {
     return (
@@ -9,17 +9,16 @@ export default function Block1() {
             <PageBlock img={Image}>
                 <Box
                     sx={{
+                        width: '75%',
+                        color: '#fff',
+                        marginTop: '150px',
                         display: 'flex',
-                        margin: '100px',
-                        fontSize: '32px',
-
+                        justifyContent: 'center',
+                        fontSize: {sx: '26px', md: '52px', lg: '72px'},
+                        textAlign: 'center',
                     }}
                 >
-                    <Typography
-                        variant="h2"
-                        noWrap
-                        sx={{ mr: 2, display: { xs: 'none', md: 'flex' }}}
-                    >
+                    <Typography variant="h2">
                         we are very gratefull for your help
                     </Typography>
                 </Box>

@@ -6,8 +6,9 @@ export default function PageBlock({children, img}) {
   return (
     <Box
       sx={{
-        display: 'flex',
-        flexWrap: 'wrap',
+        // display: 'flex',
+        // justifyContent: 'center',
+        // flexWrap: 'wrap',
         '& > :not(style)': {
             m: 1,
             width: '100%',
@@ -19,6 +20,8 @@ export default function PageBlock({children, img}) {
       }}
     >
         <Paper elevation={0} sx={{
+            display: 'flex',
+            justifyContent: 'center',
             backgroundImage: img ? `url(${img})` : 'none',
             backgroundSize: 'cover',
         }}>
