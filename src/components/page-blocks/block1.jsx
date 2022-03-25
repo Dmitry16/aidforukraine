@@ -1,21 +1,28 @@
 import Typography from '@mui/material/Typography';
 import PageBlock from '../page-block';
 import Image from '../../assets/img/heros.jpg';
+import Box from '@mui/material/Box';
 
 export default function Block1() {
     return (
         <>
             <PageBlock img={Image}>
-                <Typography
-                    variant="h4"
-                    // noWrap
-                    sx={{ mr: 2, display: { xs: 'none', md: 'flex' },
-                        marginTop: '300px',
-                        // zIndex: 999,
+                <Box
+                    sx={{
+                        display: 'flex',
+                        margin: '100px',
+                        fontSize: '32px',
+
                     }}
                 >
-                    we are very gratefull for your help
-                </Typography>
+                    <Typography
+                        variant="h2"
+                        noWrap
+                        sx={{ mr: 2, display: { xs: 'none', md: 'flex' }}}
+                    >
+                        we are very gratefull for your help
+                    </Typography>
+                </Box>
             </PageBlock>
         </>
     );

@@ -1,21 +1,26 @@
 import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+
 import PageBlock from '../page-block';
 
 export default function Block2() {
     return (
         <>
             <PageBlock>
-                <Typography
-                    variant="h2"
-                    noWrap
-                    sx={{ mr: 2,
+                <Box
+                    sx={{
                         display: 'flex',
-                        marginTop: '300px',
-                        height: '400px',
+                        margin: '100px',
+                        fontSize: '32px',
                     }}
                 >
-                    Block2
-                </Typography>
+                    <Typography
+                        variant="h2"
+                        noWrap
+                    >
+                        Block2
+                    </Typography>
+                </Box>
             </PageBlock>
         </>
     );
