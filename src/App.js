@@ -2,7 +2,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-import MainPage from './pages/main-page'
+import MainPage from './pages/main-page';
 
 import theme from './theme';
 
@@ -13,7 +13,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <Router>
         <Routes>
-          <Route path="/" element={<MainPage />} />
+          <Route path="/aidforukraine" element={<MainPage />} />
         </Routes>
       </Router>
     </ThemeProvider>
