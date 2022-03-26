@@ -18,7 +18,7 @@ export default function Block6() {
                         variant="h2"
                         noWrap
                     >
-                        Block6
+                        Contact address
                     </Typography>
                 </Box>
             </PageBlock>

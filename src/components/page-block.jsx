@@ -8,15 +8,13 @@ export default function PageBlock({children, bgImg, padding}) {
       sx={{
         display: 'flex',
         justifyContent: 'center',
-        // flexWrap: 'wrap',
         '& > :not(style)': {
-            // m: 1,
             width: '100%',
             height: 'auto',
             margin: 0,
             padding: padding ? padding : 0,
             borderRadius: 0,
-            border: '1px solid gray'
+            borderBottom: '1px solid gray'
         },
       }}
     >
