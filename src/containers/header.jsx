@@ -33,12 +33,11 @@ const Navigation = () => {
         <Toolbar disableGutters>
           <Logo />
           <Box sx={{ flexGrow: 1,
-            display: { xs: 'flex', md: 'none' },
+            display: { xs: 'flex', lg: 'none' },
             justifyContent: 'flex-end',
           }}>
             <IconButton
               size="large"
-              aria-label="account of current user"
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
@@ -61,7 +60,7 @@ const Navigation = () => {
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
               sx={{
-                display: { xs: 'block', md: 'none' },
+                display: { xs: 'block', lg: 'none' },
                 width: '250px',
               }}
             >
@@ -78,7 +77,7 @@ const Navigation = () => {
           </Box>
           
           <Box sx={{ flexGrow: 1,
-            display: { xs: 'none', md: 'flex' },
+            display: { xs: 'none', lg: 'flex' },
             justifyContent: 'flex-end',
           }}>
             {pages.map((page) => (

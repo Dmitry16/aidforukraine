@@ -9,12 +9,13 @@ export default function Block1() {
             <PageBlock img={Image}>
                 <Box
                     sx={{
-                        width: '75%',
-                        color: '#fff',
-                        marginTop: '150px',
                         display: 'flex',
                         justifyContent: 'center',
-                        fontSize: {sx: '26px', md: '52px', lg: '72px'},
+                        width: '75%',
+                        color: '#fff',
+                        padding: {xs: '100px 0 30px', lg: '120px 0 60px'},
+                        alignItems: 'center',
+                        fontSize: {xs: '26px', sm: '42px', md: '52px', lg: '72px'},
                         textAlign: 'center',
                     }}
                 >
