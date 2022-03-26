@@ -13,7 +13,6 @@ export default function Block2() {
                         display: 'flex',
                         flexDirection: {xs: 'column', md: 'row'},
                         justifyContent: 'center',
-                        // width: '50%',
                         padding: '3%',
                     }}
                 >

@@ -2,7 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 
-export default function PageBlock({children, img, padding}) {
+export default function PageBlock({children, bgImg, padding}) {
   return (
     <Box
       sx={{
@@ -25,7 +25,7 @@ export default function PageBlock({children, img, padding}) {
                 display: 'flex',
                 justifyContent: 'center',
                 width: '100%',
-                backgroundImage: img ? `url(${img})` : 'none',
+                backgroundImage: bgImg ? `url(${bgImg})` : 'none',
                 backgroundSize: 'cover',
             }}
         >
