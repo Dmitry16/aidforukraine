@@ -15,7 +15,7 @@ export default function Block1() {
                         color: '#fff',
                         padding: {xs: '100px 0 30px', lg: '120px 0 60px'},
                         alignItems: 'center',
-                        fontSize: {xs: '26px', sm: '42px', md: '52px', lg: '72px'},
+                        fontSize: {xs: '26px', sm: '42px', md: '52px', lg: '62px'},
                         textAlign: 'center',
                     }}
                 >
