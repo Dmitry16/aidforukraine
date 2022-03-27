@@ -75,7 +75,6 @@ const Navigation = () => {
               ))}
             </Menu>
           </Box>
-          
           <Box sx={{ flexGrow: 1,
             display: { xs: 'none', lg: 'flex' },
             justifyContent: 'flex-end',
