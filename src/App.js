@@ -1,10 +1,10 @@
-import { ThemeProvider } from '@mui/material/styles';
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { ThemeProvider } from "@mui/material/styles";
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-import MainPage from './pages/main-page';
+import MainPage from "./pages/main-page";
 
-import theme from './theme';
+import theme from "./theme";
 
 // smoothscroll.polyfill();
 

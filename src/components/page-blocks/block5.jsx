@@ -1,5 +1,3 @@
-import Box from "@mui/material/Box";
-
 import PageBlock from "../page-block";
 import InventoryForm from "../../inventoryForm";
 
