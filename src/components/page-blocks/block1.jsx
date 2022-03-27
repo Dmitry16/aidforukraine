@@ -6,7 +6,7 @@ import Image from "../../assets/img/heros.jpg";
 export default function Block1() {
   return (
     <PageBlock bgImg={Image}>
-      <Box
+      <Box id="home"
         sx={{
           display: "flex",
           justifyContent: "center",

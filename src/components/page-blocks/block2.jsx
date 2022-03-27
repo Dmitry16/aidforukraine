@@ -7,7 +7,7 @@ import img from "../../assets/img/ze1.jpg";
 export default function Block2() {
   return (
     <PageBlock>
-      <Box
+      <Box id="about"
         sx={{
           display: "flex",
           flexDirection: { xs: "column", md: "row" },
