@@ -150,6 +150,16 @@ const theme = createTheme({
         },
       },
     },
+    MuiListItem: {
+      styleOverrides: {
+        root: { minWidth: '0px'},
+      },
+    },
+    MuiListItemIcon: {
+      styleOverrides: {
+        root: { minWidth: '35px'},
+      },
+    },
     MuiButton: {
       styleOverrides: {
         root: {
