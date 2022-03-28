@@ -173,7 +173,7 @@ const BoxForm = ({ boxes, setBoxes, isValidating, resetValidating }) => {
             size={"small"}
             onChange={(e) => onChange(e, packId)}
             name={"notes"}
-            value={boxes[packId].notes}
+            value={boxes[packId].notes || ""}
             label="Notes"
             variant="outlined"
           />

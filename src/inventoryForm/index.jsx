@@ -8,6 +8,7 @@ import {
   MenuItem,
   MenuList,
   TextField,
+  Typography,
 } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import {
@@ -75,7 +76,19 @@ const InventoryForm = () => {
     data: [],
   };
 
+  const setPresavedState = useCallback((order) => {
+    setFormState(order);
+    setBoxes(order.boxes);
+  }, []);
+
   const resetValidating = useCallback(() => setValidating(false), []);
+
+  const resetForm = useCallback(() => {
+    setFormState(getEmptyFormState());
+    setBoxes([]);
+    setValidating(false);
+    setLoading(false);
+  }, []);
 
   const onChange = useCallback(
     ({ target: { name, value } }) => {
@@ -105,9 +118,11 @@ const InventoryForm = () => {
       const currentOrder = {
         ...formState,
         [fieldsId.boxes]: JSON.stringify({ packs: Object.values(boxes) }),
-        [fieldsId.edit]: "testId",
+        [fieldsId.edit]: formState.saved ? formState[fieldsId.orderId] : "",
       };
       delete currentOrder.timeStamp;
+      delete currentOrder.saved;
+      delete currentOrder.boxes;
       let searchParams = new URLSearchParams(currentOrder);
       fetch(formUrl + "?" + searchParams.toString(), {
         method: "POST",
@@ -120,18 +135,29 @@ const InventoryForm = () => {
               ? JSON.parse(presaved)
               : { data: [] };
 
-            ordersHistory.data.push([
-              formState.timeStamp,
-              ...Object.values(currentOrder),
-            ]);
+            const orderToSave = {
+              ...formState,
+              boxes,
+              saved: true,
+            };
+
+            const prevIndex = ordersHistory.data.findIndex(
+              (o) => o[fieldsId.orderId] === formState[fieldsId.orderId]
+            );
+
+            if (~prevIndex) {
+              /* update if we have order stored before */
+              ordersHistory.data[prevIndex] = orderToSave;
+            } else {
+              ordersHistory.data.push(orderToSave);
+            }
             localStorage.setItem(lsHistoryKey, JSON.stringify(ordersHistory));
-            setFormState(getEmptyFormState);
-            setBoxes({});
+            resetForm();
           }
         })
         .finally(() => setLoading(false));
     },
-    [formState, boxes]
+    [formState, boxes, resetForm]
   );
 
   return (
@@ -303,15 +329,25 @@ const InventoryForm = () => {
                   gap: 3,
                 }}
               >
-                {/*<Typography variant={"h6"}>*/}
-                {/*  Order ID: {formState[fieldsId.orderId]}*/}
-                {/*</Typography>*/}
+                {formState.saved && (
+                  <>
+                    <Typography>{formatTime(formState.timeStamp)}</Typography>
+                    <Typography>#{formState[fieldsId.orderId]}</Typography>
+                    <Button
+                      disabled={isLoading}
+                      type={"submit"}
+                      onClick={resetForm}
+                    >
+                      New Order
+                    </Button>
+                  </>
+                )}
                 <Button
                   disabled={isLoading}
                   type={"submit"}
                   variant="contained"
                 >
-                  Submit
+                  {formState.saved ? "Update" : "Submit"}
                 </Button>
               </Box>
             </Grid>
@@ -321,9 +357,22 @@ const InventoryForm = () => {
               <MenuItem>Previous orders:</MenuItem>
               <Divider />
               <Box sx={{ maxHeight: 170, overflowY: "auto" }}>
-                {ordersHistory?.data?.map(([timeStamp, uid, orderId]) => (
-                  <MenuItem key={orderId}>
-                    {formatTime(timeStamp)} - {orderId}
+                {ordersHistory?.data?.map((pastOrder) => (
+                  <MenuItem
+                    sx={{
+                      fontWeight:
+                        pastOrder[fieldsId["orderId"]] ===
+                        formState[fieldsId["orderId"]]
+                          ? "bold"
+                          : "normal",
+                    }}
+                    key={pastOrder[fieldsId["orderId"]]}
+                    onClick={() => {
+                      setPresavedState(pastOrder);
+                    }}
+                  >
+                    {formatTime(pastOrder.timeStamp)} -{" "}
+                    {pastOrder[fieldsId["orderId"]]}
                   </MenuItem>
                 ))}
               </Box>
