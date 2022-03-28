@@ -24,8 +24,7 @@ export default function Block6() {
       >
         <Box
           sx={{
-            display: "flex",
-            justifyContent: "center",
+            padding: "10px 30px 0",
           }}
         >
           <Typography variant="h2">Contacts</Typography>
@@ -47,10 +46,7 @@ export default function Block6() {
             }}
           >
             <List>
-              <ListItem sx={{
-                display: 'flex',
-                justifyContent: 'center',
-              }}>
+              <ListItem>
                 <ListItemIcon>
                   <LocationOnOutlinedIcon />
                 </ListItemIcon>
