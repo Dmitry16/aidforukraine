@@ -36,41 +36,48 @@ const boxTypes = [
   "shoes",
   "other",
 ];
-const BoxForm = ({ boxes, setBoxes }) => {
+const BoxForm = ({ boxes, setBoxes, isValidating, resetValidating }) => {
   const onAddBox = useCallback(() => {
-    const newBoxId = getCodeId();
+    const newPackId = getCodeId();
+    resetValidating();
     setBoxes((bxs) => ({
       ...bxs,
-      [newBoxId]: {
-        boxId: newBoxId,
+      [newPackId]: {
+        packId: newPackId,
         amount: 1,
         weight: 5,
       },
     }));
-  }, []);
-  const onChange = useCallback(({ target: { name, value } }, boxId) => {
-    console.log(value);
-    if (
-      !value?.length ||
-      value.length <= 2 ||
-      value > 0 ||
-      typeof value === "string"
-    ) {
-      setBoxes((bxs) => ({
-        ...bxs,
-        [boxId]: { ...bxs[boxId], [name]: value },
-      }));
-    }
-  }, []);
+  }, [resetValidating]);
+
+  const onChange = useCallback(
+    ({ target: { name, value } }, packId) => {
+      resetValidating();
+      if (
+        !value?.length ||
+        value.length <= 2 ||
+        value > 0 ||
+        typeof value === "string"
+      ) {
+        setBoxes((bxs) => ({
+          ...bxs,
+          [packId]: { ...bxs[packId], [name]: value },
+        }));
+      }
+    },
+    [resetValidating]
+  );
 
   const onDelete = useCallback(
-    (id) =>
+    (id) => {
+      resetValidating();
       setBoxes((bx) => {
         const newBoxes = { ...bx };
         delete newBoxes[id];
         return newBoxes;
-      }),
-    []
+      });
+    },
+    [resetValidating]
   );
 
   return (
@@ -85,8 +92,8 @@ const BoxForm = ({ boxes, setBoxes }) => {
         },
       }}
     >
-      {Object.values(boxes).map(({ boxId }, i) => (
-        <Paper elevation={5} key={boxId} style={boxStyles}>
+      {Object.values(boxes).map(({ packId }, i) => (
+        <Paper elevation={5} key={packId} style={boxStyles}>
           <Box
             sx={{
               display: "flex",
@@ -98,9 +105,9 @@ const BoxForm = ({ boxes, setBoxes }) => {
               boxSizing: "border-box",
             }}
           >
-            <Typography variant={"h6"}>{boxId}</Typography>
+            <Typography variant={"h6"}>{packId}</Typography>
             <HighlightOff
-              onClick={() => onDelete(boxId)}
+              onClick={() => onDelete(packId)}
               sx={{ color: "#aaa", cursor: "pointer" }}
             />
           </Box>
@@ -112,7 +119,7 @@ const BoxForm = ({ boxes, setBoxes }) => {
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
-                value={boxes[boxId].type || []}
+                value={boxes[packId].type || []}
                 input={
                   <OutlinedInput id="select-multiple-chip" label="Content" />
                 }
@@ -129,8 +136,9 @@ const BoxForm = ({ boxes, setBoxes }) => {
                 )}
                 multiple
                 name={"type"}
-                onChange={(e) => onChange(e, boxId)}
+                onChange={(e) => onChange(e, packId)}
                 placeholder={"Type"}
+                error={isValidating && !boxes[packId].type?.length}
               >
                 {" "}
                 {boxTypes.map((tp) => (
@@ -144,27 +152,28 @@ const BoxForm = ({ boxes, setBoxes }) => {
 
           <TextField
             size={"small"}
-            onChange={(e) => onChange(e, boxId)}
+            onChange={(e) => onChange(e, packId)}
             name={"amount"}
-            value={boxes[boxId].amount}
+            value={boxes[packId].amount}
             label="Amount"
             type={"number"}
             variant="outlined"
+            error={isValidating && !boxes[packId].amount}
           />
           <TextField
             size={"small"}
-            onChange={(e) => onChange(e, boxId)}
+            onChange={(e) => onChange(e, packId)}
             name={"weight"}
-            value={boxes[boxId].weight}
+            value={boxes[packId].weight}
             label="Weight, kg"
             variant="outlined"
             type={"number"}
           />
           <TextField
             size={"small"}
-            onChange={(e) => onChange(e, boxId)}
+            onChange={(e) => onChange(e, packId)}
             name={"notes"}
-            value={boxes[boxId].notes}
+            value={boxes[packId].notes || ""}
             label="Notes"
             variant="outlined"
           />
@@ -177,6 +186,9 @@ const BoxForm = ({ boxes, setBoxes }) => {
           opacity: 0.6,
           cursor: "pointer",
           justifyContent: "center",
+          border: `1px solid ${
+            isValidating && !Object.values(boxes).length ? "red" : "transparent"
+          }`,
         }}
       >
         <span>Add Pack</span>
