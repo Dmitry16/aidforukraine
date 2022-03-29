@@ -2,6 +2,7 @@ import React, { useCallback, useState } from "react";
 import {
   Box,
   Button,
+  Chip,
   createTheme,
   Divider,
   Grid,
@@ -160,6 +161,33 @@ const InventoryForm = () => {
     [formState, boxes, resetForm]
   );
 
+  const historyMenuItems = (Wrapper) => (
+    <Box
+      sx={{
+        maxHeight: 385,
+        overflowY: "auto",
+        flexDirection: { xs: "row", md: "column" },
+      }}
+    >
+      {ordersHistory?.data?.map((pastOrder) => (
+        <Wrapper
+          sx={{
+            fontWeight:
+              pastOrder[fieldsId["orderId"]] === formState[fieldsId["orderId"]]
+                ? "bold"
+                : "normal",
+          }}
+          key={pastOrder[fieldsId["orderId"]]}
+          onClick={() => {
+            setPresavedState(pastOrder);
+          }}
+        >
+          {formatTime(pastOrder.timeStamp)} - {pastOrder[fieldsId["orderId"]]}
+        </Wrapper>
+      ))}
+    </Box>
+  );
+
   return (
     <ThemeProvider theme={defaultTheme}>
       <Box
@@ -168,45 +196,42 @@ const InventoryForm = () => {
         sx={{
           ml: 2,
           mr: 1,
-          width: '80%',
-          "& .MuiTextField-root": { m: 1, width: '80%' },
+          width: "80%",
+          "& .MuiTextField-root": { m: 1, width: "80%" },
         }}
         onSubmit={onSubmit}
       >
-        <Box sx={{ display: "flex", flexDirection: {xs: 'column', md: 'row'} }}>
-          <Box sx={{ display: "flex", width: 200 }}>
-            <MenuList>
+        <Box
+          sx={{ display: "flex", flexDirection: { xs: "column", md: "row" } }}
+        >
+          <Box
+            sx={{
+              display: "flex",
+              width: { xs: "100%", md: 200 },
+              order: { xs: 1, md: 3 },
+            }}
+          >
+            <MenuList sx={{ display: { xs: "none", md: "block" } }}>
               <MenuItem>Previous orders:</MenuItem>
               <Divider />
-              <Box sx={{ maxHeight: 170, overflowY: "auto" }}>
-                {ordersHistory?.data?.map((pastOrder) => (
-                  <MenuItem
-                    sx={{
-                      fontWeight:
-                        pastOrder[fieldsId["orderId"]] ===
-                        formState[fieldsId["orderId"]]
-                          ? "bold"
-                          : "normal",
-                    }}
-                    key={pastOrder[fieldsId["orderId"]]}
-                    onClick={() => {
-                      setPresavedState(pastOrder);
-                    }}
-                  >
-                    {formatTime(pastOrder.timeStamp)} -{" "}
-                    {pastOrder[fieldsId["orderId"]]}
-                  </MenuItem>
-                ))}
-              </Box>
+              {historyMenuItems(MenuItem)}
             </MenuList>
+            <Box sx={{ display: { xs: "flex", md: "none" } }}>
+              <MenuItem>Previous orders:</MenuItem>
+              {historyMenuItems(({ children, ...p }) => (
+                <Chip {...p} label={children} />
+              ))}
+            </Box>
           </Box>
-          <Grid container spacing={2}>
-            <Grid item xs={12} md={6}>
-              <Box sx={{
-                display: "flex",
-                alignItems: "flex-end",
-                width: '100%'
-              }}>
+          <Grid sx={{ order: 2 }} container spacing={2}>
+            <Grid item xs={12} sm={6}>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "flex-end",
+                  width: "100%",
+                }}
+              >
                 <CorporateFare
                   sx={{ color: "action.active", mr: 1, my: 0.5 }}
                 />
@@ -220,7 +245,7 @@ const InventoryForm = () => {
                 />
               </Box>
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} sm={6}>
               <Box sx={{ display: "flex", alignItems: "flex-end" }}>
                 <AccountCircle
                   sx={{ color: "action.active", mr: 1, my: 0.5 }}
@@ -235,7 +260,37 @@ const InventoryForm = () => {
                 />
               </Box>
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} sm={6}>
+              <Box sx={{ display: "flex", alignItems: "flex-end" }}>
+                <Phone sx={{ color: "action.active", mr: 1, my: 0.5 }} />
+                <TextField
+                  id="phone-number"
+                  label="Phone"
+                  variant={variant}
+                  onChange={onChange}
+                  name={fieldsId.phoneNumber}
+                  value={formState[fieldsId.phoneNumber] || ""}
+                  error={isValidating && !formState[fieldsId.phoneNumber]}
+                />
+              </Box>
+            </Grid>
+            <Grid item xs={12} sm={6}>
+              <Box sx={{ display: "flex", alignItems: "flex-end" }}>
+                <AlternateEmail
+                  sx={{ color: "action.active", mr: 1, my: 0.5 }}
+                />
+                <TextField
+                  id="email"
+                  label="Email"
+                  variant={variant}
+                  onChange={onChange}
+                  name={fieldsId.email}
+                  value={formState[fieldsId.email] || ""}
+                  error={isValidating && !formState[fieldsId.email]}
+                />
+              </Box>
+            </Grid>
+            <Grid item xs={12} sm={6}>
               <Box sx={{ display: "flex", alignItems: "flex-end" }}>
                 <AirlineSeatReclineNormal
                   sx={{ color: "action.active", mr: 1, my: 0.5 }}
@@ -249,7 +304,7 @@ const InventoryForm = () => {
                 />
               </Box>
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} sm={6}>
               <Box sx={{ display: "flex", alignItems: "flex-end" }}>
                 <Phone sx={{ color: "action.active", mr: 1, my: 0.5 }} />
                 <TextField
@@ -261,7 +316,7 @@ const InventoryForm = () => {
                 />
               </Box>
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} sm={6}>
               <Box sx={{ display: "flex", alignItems: "flex-end" }}>
                 <CorporateFare
                   sx={{ color: "action.active", mr: 1, my: 0.5 }}
@@ -285,11 +340,9 @@ const InventoryForm = () => {
                 {/*</LocalizationProvider>*/}
               </Box>
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} sm={6}>
               <Box sx={{ display: "flex", alignItems: "flex-end" }}>
-                <Description
-                  sx={{ color: "action.active", mr: 1, my: 0.5 }}
-                />
+                <Description sx={{ color: "action.active", mr: 1, my: 0.5 }} />
                 <TextField
                   label="Order Notes"
                   variant={variant}
@@ -299,37 +352,7 @@ const InventoryForm = () => {
                 />
               </Box>
             </Grid>
-            <Grid item xs={12} md={6}>
-              <Box sx={{ display: "flex", alignItems: "flex-end" }}>
-                <Phone sx={{ color: "action.active", mr: 1, my: 0.5 }} />
-                <TextField
-                  id="phone-number"
-                  label="Phone"
-                  variant={variant}
-                  onChange={onChange}
-                  name={fieldsId.phoneNumber}
-                  value={formState[fieldsId.phoneNumber] || ""}
-                  error={isValidating && !formState[fieldsId.phoneNumber]}
-                />
-              </Box>
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <Box sx={{ display: "flex", alignItems: "flex-end" }}>
-                <AlternateEmail
-                  sx={{ color: "action.active", mr: 1, my: 0.5 }}
-                />
-                <TextField
-                  id="email"
-                  label="Email"
-                  variant={variant}
-                  onChange={onChange}
-                  name={fieldsId.email}
-                  value={formState[fieldsId.email] || ""}
-                  error={isValidating && !formState[fieldsId.email]}
-                />
-              </Box>
-            </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} sm={6}>
               <Box sx={{ display: "flex", alignItems: "flex-end" }}>
                 <LocalShipping
                   sx={{ color: "action.active", mr: 1, my: 0.5 }}
@@ -344,7 +367,7 @@ const InventoryForm = () => {
                 />
               </Box>
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} sm={6}>
               <Box sx={{ display: "flex", alignItems: "flex-end" }}>
                 <LocalShipping
                   sx={{ color: "action.active", mr: 1, my: 0.5 }}
@@ -358,47 +381,47 @@ const InventoryForm = () => {
                 />
               </Box>
             </Grid>
-            <Grid item xs={12}>
-              <BoxForm
-                boxes={boxes}
-                setBoxes={setBoxes}
-                isValidating={isValidating}
-                resetValidating={resetValidating}
-              />
-            </Grid>
-            <Box
-              sx={{
-                ml: 3,
-                mb: 1,
-                display: "flex",
-                justifyContent: "flex-end",
-                alignItems: "flex-end",
-                gap: 3,
-              }}
-            >
-              {formState.saved && (
-                <>
-                  <Typography>{formatTime(formState.timeStamp)}</Typography>
-                  <Typography>#{formState[fieldsId.orderId]}</Typography>
-                  <Button
-                    disabled={isLoading}
-                    type={"submit"}
-                    onClick={resetForm}
-                  >
-                    New Order
-                  </Button>
-                </>
-              )}
-              <Button
-                disabled={isLoading}
-                type={"submit"}
-                variant="contained"
+            <Grid item xs={12} sm={6}></Grid>
+            <Grid item xs={12} sm={6}>
+              <Box
+                sx={{
+                  mt: 2,
+                  display: "flex",
+                  justifyContent: "flex-end",
+                  alignItems: "center",
+                  gap: 3,
+                }}
               >
-                {formState.saved ? "Update" : "Submit"}
-              </Button>
-            </Box>
+                {formState.saved && (
+                  <>
+                    <Typography>{formatTime(formState.timeStamp)}</Typography>
+                    <Typography>#{formState[fieldsId.orderId]}</Typography>
+                    <Button
+                      disabled={isLoading}
+                      type={"submit"}
+                      onClick={resetForm}
+                    >
+                      New Order
+                    </Button>
+                  </>
+                )}
+                <Button
+                  disabled={isLoading}
+                  type={"submit"}
+                  variant="contained"
+                >
+                  {formState.saved ? "Update" : "Submit"}
+                </Button>
+              </Box>
+            </Grid>
           </Grid>
         </Box>
+        <BoxForm
+          boxes={boxes}
+          setBoxes={setBoxes}
+          isValidating={isValidating}
+          resetValidating={resetValidating}
+        />
       </Box>
     </ThemeProvider>
   );

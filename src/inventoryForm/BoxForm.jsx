@@ -20,10 +20,10 @@ const boxStyles = {
   alignItems: "center",
   flexDirection: "column",
   height: 250,
-  width: {xs: 370, md: 200},
+  width: { xs: "100%", sm: "45%", md: 200 },
   backgroundColor: "#eee",
   padding: "7px 0",
-  margin: '10px',
+  margin: "10px",
 };
 const boxTypes = [
   "medicine",
