@@ -34,7 +34,7 @@ const theme = createTheme({
       fontSize: "96px",
       lineHeight: "112px",
       letterSpacing: " -1.5px",
-      color: BLACK_COLOR,
+      color: GRAY_COLOR,
     },
     h2: {
       fontFamily: 'Source Sans Pro", sans-serif',
@@ -43,7 +43,7 @@ const theme = createTheme({
       fontSize: "60px",
       lineHeight: "72px",
       letterSpacing: " -0.5px",
-      color: BLACK_COLOR,
+      color: GRAY_COLOR,
     },
     h3: {
       fontFamily: 'Source Sans Pro", sans-serif',
@@ -51,7 +51,7 @@ const theme = createTheme({
       fontWeight: "normal",
       fontSize: "48px",
       lineHeight: "56px",
-      color: BLACK_COLOR,
+      color: GRAY_COLOR,
     },
     h4: {
       fontFamily: 'Source Sans Pro", sans-serif',
@@ -59,7 +59,7 @@ const theme = createTheme({
       fontWeight: "normal",
       fontSize: "34px",
       lineHeight: "36px",
-      color: BLACK_COLOR,
+      color: GRAY_COLOR,
     },
     h5: {
       fontFamily: 'Source Sans Pro", sans-serif',
@@ -68,7 +68,7 @@ const theme = createTheme({
       fontSize: "24px",
       lineHeight: "24px",
       letterSpacing: "0.18px",
-      color: BLACK_COLOR,
+      color: GRAY_COLOR,
     },
     h6: {
       fontFamily: 'Source Sans Pro", sans-serif',
@@ -85,7 +85,7 @@ const theme = createTheme({
       fontSize: "16px",
       lineHeight: "24px",
       letterSpacing: "0.15px",
-      color: BLACK_COLOR,
+      color: GRAY_COLOR,
     },
     subtitle2: {
       fontFamily: 'Source Sans Pro", sans-serif',
@@ -102,7 +102,7 @@ const theme = createTheme({
       fontSize: "16px",
       lineHeight: "24px",
       letterSpacing: "0.5px",
-      color: BLACK_COLOR,
+      color: GRAY_COLOR,
     },
     body2: {
       fontFamily: 'Source Sans Pro", sans-serif',
@@ -111,7 +111,7 @@ const theme = createTheme({
       fontSize: "14px",
       lineHeight: "20px",
       letterSpacing: "0.25px",
-      color: BLACK_COLOR,
+      color: GRAY_COLOR,
     },
     button: {
       fontFamily: 'Source Sans Pro", sans-serif',
@@ -129,7 +129,7 @@ const theme = createTheme({
       fontSize: "12px",
       lineHeight: "16px",
       letterSpacing: "0.5px",
-      color: BLACK_COLOR,
+      color: GRAY_COLOR,
     },
     overline: {
       fontFamily: 'Source Sans Pro", sans-serif',
@@ -139,10 +139,50 @@ const theme = createTheme({
       lineHeight: "16px",
       letterSpacing: "1.5px",
       textTransform: "uppercase",
-      color: BLACK_COLOR,
+      color: GRAY_COLOR,
     },
   },
   components: {
+    MuiLink: {
+      styleOverrides: {
+        root: {
+          color: GRAY_COLOR,
+        },
+      },
+    },
+    MuiListItem: {
+      styleOverrides: {
+        root: { minWidth: '0px'},
+      },
+    },
+    MuiListItemIcon: {
+      styleOverrides: {
+        root: { minWidth: '35px'},
+      },
+    },
+    MuiBox: {
+      styleOverrides: {
+        root: {
+          minWidth: '100px',
+          width: '200px'
+        },
+      },
+    },
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          // minWidth: '20ch',
+        },
+      },
+    },
+    MuiFormControl: {
+      styleOverrides: {
+        root: {
+          minWidth: '45ch',
+          width: '300px'
+        },
+      },
+    },
     MuiButton: {
       styleOverrides: {
         root: {

@@ -14,15 +14,22 @@ import PageBlock from "../page-block";
 export default function Block6() {
   return (
     <PageBlock>
-      <Box
+      <Box id="contacts"
         sx={{
           display: "flex",
-          flexDirection: { xs: "column", md: "column" },
+          flexDirection: "column",
+          // flexDirection: { xs: "column", md: "column" },
           justifyContent: "center",
-          padding: "3%",
+          padding: { xs: '0', md: '3%' },
         }}
       >
-        <Typography variant="h2">Contacts</Typography>
+        <Box
+          sx={{
+            padding: "10px 30px 0",
+          }}
+        >
+          <Typography variant="h2">Contacts</Typography>
+        </Box>
         <Box
           sx={{
             display: "flex",
@@ -46,14 +53,29 @@ export default function Block6() {
                 </ListItemIcon>
                 <Box
                   sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    fontSize: { xs: "14px", md: "16px", lg: "18px" },
+                    display: 'flex',
+                    flexDirection: {xs: 'column', md: 'row'},
                   }}
                 >
-                  <ListItemText primary="Hub Przemyśl" />
-                  <ListItemText primary="Lwowska 154" />
-                  <ListItemText primary="37-700 Przemyśl" />
+                  <Box
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      fontSize: { xs: "14px", md: "16px", lg: "18px" },
+                    }}
+                  >
+                      <ListItemText primary="Hub Przemyśl" />
+                      <ListItemText primary="Lwowska 154" />
+                      <ListItemText primary="37-700 Przemyśl" />
+                  </Box>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      marginLeft: {xs: '0px', md: '20px'},
+                    }}
+                  >
+                      <object aria-label="map" data="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2683.688126384253!2d22.841996582965884!3d49.77965949960185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473b791b9156e5d9%3A0xfebfe81db93043fe!2sInglot!5e1!3m2!1spl!2spl!4v1647588804251!5m2!1spl!2spl"></object>
+                  </Box>
                 </Box>
               </ListItem>
               <Divider />
@@ -162,12 +184,11 @@ export default function Block6() {
         </Box>
         <Box
           sx={{
-            height: "450px",
-            width: "500px",
+            // height: "450px",
+            // width: "500px",
             border: 0,
           }}
         >
-          <object data="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2683.688126384253!2d22.841996582965884!3d49.77965949960185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x473b791b9156e5d9%3A0xfebfe81db93043fe!2sInglot!5e1!3m2!1spl!2spl!4v1647588804251!5m2!1spl!2spl"></object>
         </Box>
       </Box>
     </PageBlock>

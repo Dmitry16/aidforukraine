@@ -7,7 +7,7 @@ import img from "../../assets/img/how-help1.jpg";
 export default function Block3() {
   return (
     <PageBlock>
-      <Box
+      <Box id="how"
         sx={{
           display: "flex",
           flexDirection: { xs: "column", md: "row" },

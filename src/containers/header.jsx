@@ -9,6 +9,9 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
+import Link from "@mui/material/Link";
+import { NavHashLink } from 'react-router-hash-link';
+
 
 import Logo from "../components/logo";
 
@@ -80,7 +83,7 @@ const Navigation = () => {
                       padding: "5px",
                     }}
                   >
-                    {page}
+                    <Link underline="none" href={`#${page.split(' ')[0].toLowerCase()}`}>{page}</Link>
                   </Typography>
                 </MenuItem>
               ))}
@@ -99,7 +102,16 @@ const Navigation = () => {
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "#000", display: "block" }}
               >
-                {page}
+                <NavHashLink
+                  style={{
+                    textDecoration: 'none',
+                  }}
+                  smooth
+                  activeStyle={{ fontWeight: 'bold' }}
+                  to={`#${page.split(' ')[0].toLowerCase()}`}
+                >
+                  {page}
+                </NavHashLink>
               </Button>
             ))}
           </Box>

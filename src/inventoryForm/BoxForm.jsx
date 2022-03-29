@@ -19,11 +19,11 @@ const boxStyles = {
   justifyContent: "space-between",
   alignItems: "center",
   flexDirection: "column",
-  width: 200,
   height: 250,
+  width: {xs: 370, md: 200},
   backgroundColor: "#eee",
   padding: "7px 0",
-  margin: 10,
+  margin: '10px',
 };
 const boxTypes = [
   "medicine",
@@ -93,7 +93,7 @@ const BoxForm = ({ boxes, setBoxes, isValidating, resetValidating }) => {
       }}
     >
       {Object.values(boxes).map(({ packId }, i) => (
-        <Paper elevation={5} key={packId} style={boxStyles}>
+        <Paper elevation={5} key={packId} sx={boxStyles}>
           <Box
             sx={{
               display: "flex",
@@ -181,7 +181,7 @@ const BoxForm = ({ boxes, setBoxes, isValidating, resetValidating }) => {
       ))}
       <Paper
         onClick={onAddBox}
-        style={{
+        sx={{
           ...boxStyles,
           opacity: 0.6,
           cursor: "pointer",

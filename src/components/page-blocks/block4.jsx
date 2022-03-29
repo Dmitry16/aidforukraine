@@ -9,7 +9,7 @@ import img from "../../assets/img/packaging.jpg";
 export default function Block4() {
   return (
     <PageBlock>
-      <Box
+      <Box id="packaging"
         sx={{
           display: "flex",
           flexDirection: { xs: "column", md: "row" },

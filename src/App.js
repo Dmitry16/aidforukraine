@@ -1,12 +1,12 @@
-import { ThemeProvider } from "@mui/material/styles";
 import React from "react";
+import { ThemeProvider } from "@mui/material/styles";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import smoothscroll from 'smoothscroll-polyfill';
 
 import MainPage from "./pages/main-page";
-
 import theme from "./theme";
 
-// smoothscroll.polyfill();
+smoothscroll.polyfill();
 
 function App() {
   return (
