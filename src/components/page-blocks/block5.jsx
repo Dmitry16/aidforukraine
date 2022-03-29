@@ -6,15 +6,22 @@ import Typography from "@mui/material/Typography";
 export default function Block5() {
     return (
         <PageBlock>
-            <Box id="cargo">
-            <Box
+            <Box id="cargo"
                 sx={{
-                    padding: "20px 30px",
-                    fontSize: { xs: "16px", md: "28px" },
+                    display: 'flex',
+                    flexDirection: "column",
+                    justifyContent: 'center',
+                    alignItems: 'center',
                 }}
             >
-                <Typography variant="h2">Cargo details</Typography>
-            </Box>
+                <Box
+                    sx={{
+                        padding: "20px 30px",
+                        fontSize: { xs: "16px", md: "28px" },
+                    }}
+                >
+                    <Typography variant="h2">Cargo details</Typography>
+                </Box>
                 <InventoryForm />
             </Box>
         </PageBlock>

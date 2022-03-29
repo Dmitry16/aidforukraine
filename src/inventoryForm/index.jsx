@@ -166,192 +166,14 @@ const InventoryForm = () => {
         className={"inventory-form"}
         component="form"
         sx={{
-          pl: 3,
-          pr: 3,
-          "& .MuiTextField-root": { m: 1, maxWidth: "18ch" },
+          ml: 2,
+          mr: 1,
+          width: '80%',
+          "& .MuiTextField-root": { m: 1, width: '80%' },
         }}
         onSubmit={onSubmit}
       >
-        <Box sx={{ display: "flex" }}>
-          <Grid container spacing={2}>
-            <Grid item xs={6}>
-              <Box sx={{ display: "flex", flexWrap: "wrap" }}>
-                <Box sx={{ display: "flex", alignItems: "flex-end" }}>
-                  <CorporateFare
-                    sx={{ color: "action.active", mr: 1, my: 0.5 }}
-                  />
-                  <TextField
-                    id="organisationName"
-                    label="Organization Name"
-                    variant={variant}
-                    onChange={onChange}
-                    name={fieldsId.organisationName}
-                    value={formState[fieldsId.organisationName] || ""}
-                  />
-                </Box>
-                <Box sx={{ display: "flex", alignItems: "flex-end" }}>
-                  <AccountCircle
-                    sx={{ color: "action.active", mr: 1, my: 0.5 }}
-                  />
-                  <TextField
-                    id="contactPerson"
-                    label="Contact Person Name"
-                    variant={variant}
-                    onChange={onChange}
-                    name={fieldsId.contactPerson}
-                    value={formState[fieldsId.contactPerson] || ""}
-                  />
-                </Box>
-              </Box>
-              <Box sx={{ display: "flex", flexWrap: "wrap" }}>
-                <Box sx={{ display: "flex", alignItems: "flex-end" }}>
-                  <AirlineSeatReclineNormal
-                    sx={{ color: "action.active", mr: 1, my: 0.5 }}
-                  />
-                  <TextField
-                    label="Driver Name"
-                    variant={variant}
-                    onChange={onChange}
-                    name={fieldsId.driverName}
-                    value={formState[fieldsId.driverName] || ""}
-                  />
-                </Box>
-                <Box sx={{ display: "flex", alignItems: "flex-end" }}>
-                  <Phone sx={{ color: "action.active", mr: 1, my: 0.5 }} />
-                  <TextField
-                    label="Driver Phone"
-                    variant={variant}
-                    onChange={onChange}
-                    name={fieldsId.driverPhoneNumber}
-                    value={formState[fieldsId.driverPhoneNumber] || ""}
-                  />
-                </Box>
-              </Box>
-              <Box sx={{ display: "flex", flexWrap: "wrap" }}>
-                <Box sx={{ display: "flex", alignItems: "flex-end" }}>
-                  <CorporateFare
-                    sx={{ color: "action.active", mr: 1, my: 0.5 }}
-                  />
-                  <TextField
-                    label="Arriving Time"
-                    variant={variant}
-                    onChange={onChange}
-                    name={fieldsId.arrivalDate}
-                    value={formState[fieldsId.arrivalDate] || ""}
-                  />
-                  {/*<LocalizationProvider dateAdapter={console.log}>*/}
-                  {/*  <DateTimePicker*/}
-                  {/*    renderInput={(props) => <TextField {...props} />}*/}
-                  {/*    label="DateTimePicker"*/}
-                  {/*    value={new Date()}*/}
-                  {/*    onChange={(newValue) => {*/}
-                  {/*      console.log(newValue);*/}
-                  {/*    }}*/}
-                  {/*  />*/}
-                  {/*</LocalizationProvider>*/}
-                </Box>
-                <Box sx={{ display: "flex", alignItems: "flex-end" }}>
-                  <Description
-                    sx={{ color: "action.active", mr: 1, my: 0.5 }}
-                  />
-                  <TextField
-                    label="Order Notes"
-                    variant={variant}
-                    onChange={onChange}
-                    name={fieldsId.notes}
-                    value={formState[fieldsId.notes] || ""}
-                  />
-                </Box>
-              </Box>
-            </Grid>
-            <Grid item xs={6}>
-              <Box sx={{ display: "flex", flexWrap: "wrap" }}>
-                <Box sx={{ display: "flex", alignItems: "flex-end" }}>
-                  <Phone sx={{ color: "action.active", mr: 1, my: 0.5 }} />
-                  <TextField
-                    id="phone-number"
-                    label="Phone"
-                    variant={variant}
-                    onChange={onChange}
-                    name={fieldsId.phoneNumber}
-                    value={formState[fieldsId.phoneNumber] || ""}
-                    error={isValidating && !formState[fieldsId.phoneNumber]}
-                  />
-                </Box>
-                <Box sx={{ display: "flex", alignItems: "flex-end" }}>
-                  <AlternateEmail
-                    sx={{ color: "action.active", mr: 1, my: 0.5 }}
-                  />
-                  <TextField
-                    id="email"
-                    label="Email"
-                    variant={variant}
-                    onChange={onChange}
-                    name={fieldsId.email}
-                    value={formState[fieldsId.email] || ""}
-                    error={isValidating && !formState[fieldsId.email]}
-                  />
-                </Box>
-              </Box>
-              <Box sx={{ display: "flex", flexWrap: "wrap" }}>
-                <Box sx={{ display: "flex", alignItems: "flex-end" }}>
-                  <LocalShipping
-                    sx={{ color: "action.active", mr: 1, my: 0.5 }}
-                  />
-                  <TextField
-                    id="vehicle"
-                    label="Vehicle registration Number"
-                    variant={variant}
-                    onChange={onChange}
-                    name={fieldsId.vehicleRegistrationNumber}
-                    value={formState[fieldsId.vehicleRegistrationNumber] || ""}
-                  />
-                </Box>
-                <Box sx={{ display: "flex", alignItems: "flex-end" }}>
-                  <LocalShipping
-                    sx={{ color: "action.active", mr: 1, my: 0.5 }}
-                  />
-                  <TextField
-                    label="Trailer registration Number"
-                    variant={variant}
-                    onChange={onChange}
-                    name={fieldsId.trailerRegistrationNumber}
-                    value={formState[fieldsId.trailerRegistrationNumber] || ""}
-                  />
-                </Box>
-              </Box>
-              <Box
-                sx={{
-                  mt: 2,
-                  display: "flex",
-                  justifyContent: "flex-end",
-                  alignItems: "center",
-                  gap: 3,
-                }}
-              >
-                {formState.saved && (
-                  <>
-                    <Typography>{formatTime(formState.timeStamp)}</Typography>
-                    <Typography>#{formState[fieldsId.orderId]}</Typography>
-                    <Button
-                      disabled={isLoading}
-                      type={"submit"}
-                      onClick={resetForm}
-                    >
-                      New Order
-                    </Button>
-                  </>
-                )}
-                <Button
-                  disabled={isLoading}
-                  type={"submit"}
-                  variant="contained"
-                >
-                  {formState.saved ? "Update" : "Submit"}
-                </Button>
-              </Box>
-            </Grid>
-          </Grid>
+        <Box sx={{ display: "flex", flexDirection: {xs: 'column', md: 'row'} }}>
           <Box sx={{ display: "flex", width: 200 }}>
             <MenuList>
               <MenuItem>Previous orders:</MenuItem>
@@ -378,13 +200,204 @@ const InventoryForm = () => {
               </Box>
             </MenuList>
           </Box>
+          <Grid container spacing={2}>
+            <Grid item xs={12} md={6}>
+              <Box sx={{
+                display: "flex",
+                alignItems: "flex-end",
+                width: '100%'
+              }}>
+                <CorporateFare
+                  sx={{ color: "action.active", mr: 1, my: 0.5 }}
+                />
+                <TextField
+                  id="organisationName"
+                  label="Organization Name"
+                  variant={variant}
+                  onChange={onChange}
+                  name={fieldsId.organisationName}
+                  value={formState[fieldsId.organisationName] || ""}
+                />
+              </Box>
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <Box sx={{ display: "flex", alignItems: "flex-end" }}>
+                <AccountCircle
+                  sx={{ color: "action.active", mr: 1, my: 0.5 }}
+                />
+                <TextField
+                  id="contactPerson"
+                  label="Contact Person Name"
+                  variant={variant}
+                  onChange={onChange}
+                  name={fieldsId.contactPerson}
+                  value={formState[fieldsId.contactPerson] || ""}
+                />
+              </Box>
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <Box sx={{ display: "flex", alignItems: "flex-end" }}>
+                <AirlineSeatReclineNormal
+                  sx={{ color: "action.active", mr: 1, my: 0.5 }}
+                />
+                <TextField
+                  label="Driver Name"
+                  variant={variant}
+                  onChange={onChange}
+                  name={fieldsId.driverName}
+                  value={formState[fieldsId.driverName] || ""}
+                />
+              </Box>
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <Box sx={{ display: "flex", alignItems: "flex-end" }}>
+                <Phone sx={{ color: "action.active", mr: 1, my: 0.5 }} />
+                <TextField
+                  label="Driver Phone"
+                  variant={variant}
+                  onChange={onChange}
+                  name={fieldsId.driverPhoneNumber}
+                  value={formState[fieldsId.driverPhoneNumber] || ""}
+                />
+              </Box>
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <Box sx={{ display: "flex", alignItems: "flex-end" }}>
+                <CorporateFare
+                  sx={{ color: "action.active", mr: 1, my: 0.5 }}
+                />
+                <TextField
+                  label="Arriving Time"
+                  variant={variant}
+                  onChange={onChange}
+                  name={fieldsId.arrivalDate}
+                  value={formState[fieldsId.arrivalDate] || ""}
+                />
+                {/*<LocalizationProvider dateAdapter={console.log}>*/}
+                {/*  <DateTimePicker*/}
+                {/*    renderInput={(props) => <TextField {...props} />}*/}
+                {/*    label="DateTimePicker"*/}
+                {/*    value={new Date()}*/}
+                {/*    onChange={(newValue) => {*/}
+                {/*      console.log(newValue);*/}
+                {/*    }}*/}
+                {/*  />*/}
+                {/*</LocalizationProvider>*/}
+              </Box>
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <Box sx={{ display: "flex", alignItems: "flex-end" }}>
+                <Description
+                  sx={{ color: "action.active", mr: 1, my: 0.5 }}
+                />
+                <TextField
+                  label="Order Notes"
+                  variant={variant}
+                  onChange={onChange}
+                  name={fieldsId.notes}
+                  value={formState[fieldsId.notes] || ""}
+                />
+              </Box>
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <Box sx={{ display: "flex", alignItems: "flex-end" }}>
+                <Phone sx={{ color: "action.active", mr: 1, my: 0.5 }} />
+                <TextField
+                  id="phone-number"
+                  label="Phone"
+                  variant={variant}
+                  onChange={onChange}
+                  name={fieldsId.phoneNumber}
+                  value={formState[fieldsId.phoneNumber] || ""}
+                  error={isValidating && !formState[fieldsId.phoneNumber]}
+                />
+              </Box>
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <Box sx={{ display: "flex", alignItems: "flex-end" }}>
+                <AlternateEmail
+                  sx={{ color: "action.active", mr: 1, my: 0.5 }}
+                />
+                <TextField
+                  id="email"
+                  label="Email"
+                  variant={variant}
+                  onChange={onChange}
+                  name={fieldsId.email}
+                  value={formState[fieldsId.email] || ""}
+                  error={isValidating && !formState[fieldsId.email]}
+                />
+              </Box>
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <Box sx={{ display: "flex", alignItems: "flex-end" }}>
+                <LocalShipping
+                  sx={{ color: "action.active", mr: 1, my: 0.5 }}
+                />
+                <TextField
+                  id="vehicle"
+                  label="Vehicle registration Number"
+                  variant={variant}
+                  onChange={onChange}
+                  name={fieldsId.vehicleRegistrationNumber}
+                  value={formState[fieldsId.vehicleRegistrationNumber] || ""}
+                />
+              </Box>
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <Box sx={{ display: "flex", alignItems: "flex-end" }}>
+                <LocalShipping
+                  sx={{ color: "action.active", mr: 1, my: 0.5 }}
+                />
+                <TextField
+                  label="Trailer registration Number"
+                  variant={variant}
+                  onChange={onChange}
+                  name={fieldsId.trailerRegistrationNumber}
+                  value={formState[fieldsId.trailerRegistrationNumber] || ""}
+                />
+              </Box>
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <BoxForm
+                boxes={boxes}
+                setBoxes={setBoxes}
+                isValidating={isValidating}
+                resetValidating={resetValidating}
+              />
+            </Grid>
+            <Box
+              sx={{
+                mt: 2,
+                display: "flex",
+                justifyContent: "flex-end",
+                alignItems: "center",
+                gap: 3,
+              }}
+            >
+              {formState.saved && (
+                <>
+                  <Typography>{formatTime(formState.timeStamp)}</Typography>
+                  <Typography>#{formState[fieldsId.orderId]}</Typography>
+                  <Button
+                    disabled={isLoading}
+                    type={"submit"}
+                    onClick={resetForm}
+                  >
+                    New Order
+                  </Button>
+                </>
+              )}
+              <Button
+                disabled={isLoading}
+                type={"submit"}
+                variant="contained"
+              >
+                {formState.saved ? "Update" : "Submit"}
+              </Button>
+            </Box>
+          </Grid>
         </Box>
-        <BoxForm
-          boxes={boxes}
-          setBoxes={setBoxes}
-          isValidating={isValidating}
-          resetValidating={resetValidating}
-        />
       </Box>
     </ThemeProvider>
   );

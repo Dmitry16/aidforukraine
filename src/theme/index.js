@@ -160,6 +160,29 @@ const theme = createTheme({
         root: { minWidth: '35px'},
       },
     },
+    MuiBox: {
+      styleOverrides: {
+        root: {
+          minWidth: '100px',
+          width: '200px'
+        },
+      },
+    },
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          // minWidth: '20ch',
+        },
+      },
+    },
+    MuiFormControl: {
+      styleOverrides: {
+        root: {
+          minWidth: '45ch',
+          width: '300px'
+        },
+      },
+    },
     MuiButton: {
       styleOverrides: {
         root: {

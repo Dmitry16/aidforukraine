@@ -17,7 +17,8 @@ export default function Block6() {
       <Box id="contacts"
         sx={{
           display: "flex",
-          flexDirection: { xs: "column", md: "column" },
+          flexDirection: "column",
+          // flexDirection: { xs: "column", md: "column" },
           justifyContent: "center",
           padding: { xs: '0', md: '3%' },
         }}
