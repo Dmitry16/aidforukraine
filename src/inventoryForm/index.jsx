@@ -358,7 +358,7 @@ const InventoryForm = () => {
                 />
               </Box>
             </Grid>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12}>
               <BoxForm
                 boxes={boxes}
                 setBoxes={setBoxes}
@@ -368,10 +368,11 @@ const InventoryForm = () => {
             </Grid>
             <Box
               sx={{
-                mt: 2,
+                ml: 3,
+                mb: 1,
                 display: "flex",
                 justifyContent: "flex-end",
-                alignItems: "center",
+                alignItems: "flex-end",
                 gap: 3,
               }}
             >

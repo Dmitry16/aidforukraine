@@ -19,10 +19,10 @@ export default function Block4() {
       >
         <Box
           sx={{
-            backgroundImage: `url(${img})`,
+            backgroundImage: {xs: 'none', md: `url(${img})`},
             backgroundSize: "cover",
-            width: { xs: "100%", md: "400px" },
-            height: { xs: "300px", md: "500px", lg: "600px" },
+            width: { xs: 0, md: "400px" },
+            height: { xs: 0, md: "500px", lg: "600px" },
           }}
         />
         <Box
