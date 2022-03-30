@@ -17,7 +17,7 @@ import { getCodeId } from "./helpers";
 const boxStyles = {
   display: "flex",
   justifyContent: "space-between",
-  alignItems: "center",
+  alignItems: "stretch",
   flexDirection: "column",
   height: 250,
   width: { xs: "100%", sm: "45%", md: 200 },
@@ -86,6 +86,8 @@ const BoxForm = ({ boxes, setBoxes, isValidating, resetValidating }) => {
         mt: 1,
         display: "flex",
         flexWrap: "wrap",
+        maxHeight: 500,
+        overflowY: "auto",
         "& .MuiSelect-select": {
           maxHeight: "70px",
           padding: "8.5px 5px !important",
@@ -186,6 +188,7 @@ const BoxForm = ({ boxes, setBoxes, isValidating, resetValidating }) => {
           opacity: 0.6,
           cursor: "pointer",
           justifyContent: "center",
+          alignItems: "center",
           border: `1px solid ${
             isValidating && !Object.values(boxes).length ? "red" : "transparent"
           }`,

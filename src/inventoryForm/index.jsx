@@ -196,6 +196,7 @@ const InventoryForm = () => {
         sx={{
           ml: 2,
           mr: 1,
+          mb: 2,
           width: "80%",
           "& .MuiTextField-root": { m: 1, width: "80%" },
         }}
