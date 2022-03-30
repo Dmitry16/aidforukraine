@@ -36,6 +36,7 @@ const Navigation = () => {
   };
 
   return (
+    <>
     <AppBar position="fixed" sx={{ background: "#fff", color: "#000" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
@@ -118,6 +119,8 @@ const Navigation = () => {
         </Toolbar>
       </Container>
     </AppBar>
+    <Toolbar id="back-to-top-anchor" />
+    </>
   );
 };
 

@@ -2,8 +2,11 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import PageBlock from "../page-block";
 import Image from "../../assets/img/heros.jpg";
+import ScrollTop from "../scroll-to-top";
+import Fab from '@mui/material/Fab';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
-export default function Block1() {
+export default function Block1(props) {
   return (
     <PageBlock bgImg={Image}>
       <Box id="home"
@@ -22,6 +25,19 @@ export default function Block1() {
           we are very gratefull for your help
         </Typography>
       </Box>
+      <ScrollTop {...props}>
+        <Box
+          sx={{
+            color: '#fff',
+            backgroundColor: 'blue',
+          }}
+        >
+        {/* <Fab color="primary" size="large" variant="circular" aria-label="scroll back to top"
+        > */}
+          <KeyboardArrowUpIcon />
+        </Box>
+        {/* </Fab> */}
+      </ScrollTop>
     </PageBlock>
   );
 }
