@@ -5,8 +5,11 @@ import Image from "../../assets/img/heros.jpg";
 import ScrollTop from "../scroll-to-top";
 import Fab from '@mui/material/Fab';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import { useTheme } from "@mui/material/styles";
 
 export default function Block1(props) {
+  const theme = useTheme();
+
   return (
     <PageBlock bgImg={Image}>
       <Box id="home"
@@ -29,7 +32,7 @@ export default function Block1(props) {
         <Box
           sx={{
             color: '#fff',
-            backgroundColor: 'blue',
+            backgroundColor: theme.palette.primary.main,
           }}
         >
         {/* <Fab color="primary" size="large" variant="circular" aria-label="scroll back to top"

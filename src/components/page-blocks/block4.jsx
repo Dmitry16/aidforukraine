@@ -2,11 +2,19 @@ import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
+import Button from "@mui/material/Button";
 
 import PageBlock from "../page-block";
 import img from "../../assets/img/packaging.jpg";
 
 export default function Block4() {
+  const onDownload = () => {
+    const link = document.createElement("a");
+    link.download = "22_03_Logistics_full.pdf";
+    link.href = "22_03_Logistics_full.pdf";
+    link.click();
+  };
+
   return (
     <PageBlock>
       <Box id="packaging"
@@ -82,6 +90,11 @@ export default function Block4() {
               <ListItem>
                 7. Shipments are accepted only from 8.00 to 15.00 CET (Central
                 European Time).
+              </ListItem>
+              <ListItem>
+                <Button variant="contained" color="primary" onClick={onDownload}>
+                  <span style={{color: '#fff'}}>Download full info in pdf</span>
+                </Button>
               </ListItem>
             </List>
           </Box>

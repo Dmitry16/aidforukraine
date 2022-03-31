@@ -1,6 +1,7 @@
 import { createTheme } from "@mui/material";
 
-export const PRIMARY_COLOR = "#923D66";
+export const PRIMARY_COLOR = "#1976d2";
+// export const PRIMARY_COLOR = "#923D66";
 export const PRIMARY_DARK_COLOR = "#6B3555";
 export const WHITE_COLOR = "#FFFFFF";
 export const BLACK_COLOR = "#000000";
@@ -212,7 +213,7 @@ const theme = createTheme({
           order: 0,
           flexGrow: 0,
           margin: "0px 0px",
-          color: PRIMARY_COLOR,
+          color: "#fff" ,
         },
         outlined: {
           display: "flex",
