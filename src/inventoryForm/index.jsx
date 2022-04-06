@@ -24,6 +24,9 @@ import {
 import BoxForm from "./BoxForm";
 import { getCodeId } from "./helpers";
 
+const urlSMS1 = `https://api2.serwersms.pl/messages/send_sms?username=webapi_ihorsydor&password=Inglot.123&phone=+48608069511&text=`;
+const urlSMS2 = `https://api2.serwersms.pl/messages/send_sms?username=webapi_ihorsydor&password=Inglot.123&phone=+48880962455&text=`;
+
 const defaultTheme = createTheme({});
 
 const lsIDKey = "drohobych-id";
@@ -77,6 +80,10 @@ const InventoryForm = () => {
     data: [],
   };
 
+  // 48608069511
+  const urlSMS1 = `https://api2.serwersms.pl/messages/send_sms?username=webapi_ihorsydor&password=Inglot.123&phone=%2B48608069511&text=test sms serwer ihor sydor&sender=Aid4Ukraine`;
+  const urlSMS2 = `https://api2.serwersms.pl/messages/send_sms?username=webapi_ihorsydor&password=Inglot.123&phone=+48606889946&text=`;
+
   const setPresavedState = useCallback((order) => {
     setFormState(order);
     setBoxes(order.boxes);
@@ -99,11 +106,33 @@ const InventoryForm = () => {
     [resetValidating]
   );
 
+  const formatPhoneNumber = (phoneNumber) => {
+    if (phoneNumber[0] === '+') {
+      return phoneNumber.substr(1);
+    } else {
+      return phoneNumber;
+    }
+  }
+
+  const sendSMS = () => {
+    // const urlSMStoDriver = `https://api2.serwersms.pl/messages/send_sms?username=webapi_ihorsydor&password=Inglot.123&phone=%2B380681239409&text=Cargo destination: https://goo.gl/maps/7Bf68Bq6xzdDMapN9 sms serwer ihor sydor&sender=Aid4Ukraine`;
+    const urlSMStoDriver = `https://api2.serwersms.pl/messages/send_sms?username=webapi_ihorsydor&password=Inglot.123&phone=%2B${formatPhoneNumber(formState[fieldsId.driverPhoneNumber])}&text=Cargo destination: https://goo.gl/maps/7Bf68Bq6xzdDMapN9 sms serwer ihor sydor&sender=Aid4Ukraine`;
+
+    // console.log('zzzzzzzzzzzzz formData:::', formState[fieldsId.organisationName])
+    const smsData = `${formState[fieldsId.vehicleRegistrationNumber]},
+      ${formState[fieldsId.driverPhoneNumber]},
+      ${formState[fieldsId.arrivalTime]}`;
+    fetch(urlSMS1 + smsData);
+    // fetch(urlSMS2 + smsData);
+    // fetch(urlSMStoDriver);
+  }
+
   const onSubmit = useCallback(
     (e) => {
       e.preventDefault();
       e.stopPropagation();
       setValidating(true);
+      sendSMS();
 
       if (
         Object.values(boxes).length === 0 ||

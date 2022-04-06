@@ -1,7 +1,7 @@
 {
   "name": "aidforukraine",
   "version": "0.1.0",
-  "homepage": "https://dmitry16.github.io/aidforukraine/",
+  "homepage": "https://www.aidforukraine.info",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.8.2",

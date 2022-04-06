@@ -13,7 +13,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <Router>
         <Routes>
-          <Route path="/aidforukraine" element={<MainPage />} />
+          <Route path="/" element={<MainPage />} />
         </Routes>
       </Router>
     </ThemeProvider>
