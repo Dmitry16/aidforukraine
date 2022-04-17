@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/aidforukraine/static/css/main.e6c13ad2.css",
-    "main.js": "/aidforukraine/static/js/main.d0ed4722.js",
-    "static/js/787.c82c90da.chunk.js": "/aidforukraine/static/js/787.c82c90da.chunk.js",
-    "static/media/heros.jpg": "/aidforukraine/static/media/heros.539069577e44954c37b0.jpg",
-    "static/media/packaging.jpg": "/aidforukraine/static/media/packaging.68730e5aad64e9c0d145.jpg",
-    "static/media/how-help1.jpg": "/aidforukraine/static/media/how-help1.68ced01c1de0e4057712.jpg",
-    "static/media/ze1.jpg": "/aidforukraine/static/media/ze1.1413f1ce4d0c920d1596.jpg",
-    "static/media/logo.png": "/aidforukraine/static/media/logo.030b818e40f8c3a4c4f5.png",
-    "index.html": "/aidforukraine/index.html",
-    "main.e6c13ad2.css.map": "/aidforukraine/static/css/main.e6c13ad2.css.map",
-    "main.d0ed4722.js.map": "/aidforukraine/static/js/main.d0ed4722.js.map",
-    "787.c82c90da.chunk.js.map": "/aidforukraine/static/js/787.c82c90da.chunk.js.map"
+    "main.css": "/static/css/main.18efd903.css",
+    "main.js": "/static/js/main.f96d3a8b.js",
+    "static/js/787.c82c90da.chunk.js": "/static/js/787.c82c90da.chunk.js",
+    "static/media/heros.jpg": "/static/media/heros.539069577e44954c37b0.jpg",
+    "static/media/packaging.jpg": "/static/media/packaging.68730e5aad64e9c0d145.jpg",
+    "static/media/how-help1.jpg": "/static/media/how-help1.68ced01c1de0e4057712.jpg",
+    "static/media/ze1.jpg": "/static/media/ze1.1413f1ce4d0c920d1596.jpg",
+    "static/media/logo.png": "/static/media/logo.030b818e40f8c3a4c4f5.png",
+    "index.html": "/index.html",
+    "main.18efd903.css.map": "/static/css/main.18efd903.css.map",
+    "main.f96d3a8b.js.map": "/static/js/main.f96d3a8b.js.map",
+    "787.c82c90da.chunk.js.map": "/static/js/787.c82c90da.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e6c13ad2.css",
-    "static/js/main.d0ed4722.js"
+    "static/css/main.18efd903.css",
+    "static/js/main.f96d3a8b.js"
   ]
 }
