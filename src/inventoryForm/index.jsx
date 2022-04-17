@@ -1,4 +1,5 @@
 import React, { useCallback, useState } from "react";
+import moment from "moment";
 import {
   Box,
   Button,
@@ -12,6 +13,8 @@ import {
   Typography,
 } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
+import DateAdapter from "@mui/lab/AdapterMoment";
+import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import {
   AccountCircle,
   AirlineSeatReclineNormal,
@@ -21,11 +24,11 @@ import {
   LocalShipping,
   Phone,
 } from "@mui/icons-material";
+import DateTimePicker from "@mui/lab/DateTimePicker";
 import BoxForm from "./BoxForm";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
 import { getCodeId } from "./helpers";
-
-const urlSMS1 = `https://api2.serwersms.pl/messages/send_sms?username=webapi_ihorsydor&password=Inglot.123&phone=+48608069511&text=`;
-const urlSMS2 = `https://api2.serwersms.pl/messages/send_sms?username=webapi_ihorsydor&password=Inglot.123&phone=+48880962455&text=`;
 
 const defaultTheme = createTheme({});
 
@@ -41,9 +44,9 @@ const fieldsId = {
   email: "entry.299921223",
   driverName: "entry.1048162980",
   driverPhoneNumber: "entry.604989816",
-  departureDate: "entry.", //TODO: define the field
-  arrivalDate: "entry.", //TODO: define the field
-  arrivalTime: "entry.", //TODO: define the field
+  departureDate: "entry.",
+  arrivalDate: "entry.1678365072",
+  arrivalDate2: "entry.1131935088",
   vehicleRegistrationNumber: "entry.1723190947",
   trailerRegistrationNumber: "entry.1504241797",
   boxes: "entry.1889613797",
@@ -71,18 +74,26 @@ const formatTime = (ms) => {
   return `${time.getDate()}.${time.getMonth()}.${time.getFullYear()}`;
 };
 
+const phoneInputStyle = {
+  width: "93%",
+  borderRadius: 0,
+  borderStyle: "none none solid",
+  borderColor: '#999',
+  fontSize: '16px',
+  fontFamily: 'Helvetica',
+}
+
 const InventoryForm = () => {
   const [formState, setFormState] = useState(getEmptyFormState());
+  // const [date, setDate] = useState(null);
+  // const [phone, setPhone] = useState();
+  // const [driverPhone, setDriverPhone] = useState();
   const [boxes, setBoxes] = useState({});
   const [isLoading, setLoading] = useState(false);
   const [isValidating, setValidating] = useState(false);
   const ordersHistory = JSON.parse(localStorage.getItem(lsHistoryKey)) || {
     data: [],
   };
-
-  // 48608069511
-  const urlSMS1 = `https://api2.serwersms.pl/messages/send_sms?username=webapi_ihorsydor&password=Inglot.123&phone=%2B48608069511&text=test sms serwer ihor sydor&sender=Aid4Ukraine`;
-  const urlSMS2 = `https://api2.serwersms.pl/messages/send_sms?username=webapi_ihorsydor&password=Inglot.123&phone=+48606889946&text=`;
 
   const setPresavedState = useCallback((order) => {
     setFormState(order);
@@ -106,26 +117,42 @@ const InventoryForm = () => {
     [resetValidating]
   );
 
-  const formatPhoneNumber = (phoneNumber) => {
-    if (phoneNumber[0] === '+') {
-      return phoneNumber.substr(1);
-    } else {
-      return phoneNumber;
-    }
-  }
+  const onChangePhone = useCallback(
+    (labelName) => (value) => {
+      resetValidating();
+      setFormState((s) => ({ ...s, [labelName]: value }));
+    },
+    [resetValidating]
+  );
+
+  const onChangeDate = useCallback(
+    (labelName) => (dateObj) => {
+      resetValidating();
+      setFormState((s) => ({
+        ...s,
+        [labelName]: dateObj ? dateObj.valueOf() : "",
+      }));
+    },
+    [resetValidating]
+  );
 
   const sendSMS = () => {
-    // const urlSMStoDriver = `https://api2.serwersms.pl/messages/send_sms?username=webapi_ihorsydor&password=Inglot.123&phone=%2B380681239409&text=Cargo destination: https://goo.gl/maps/7Bf68Bq6xzdDMapN9 sms serwer ihor sydor&sender=Aid4Ukraine`;
-    const urlSMStoDriver = `https://api2.serwersms.pl/messages/send_sms?username=webapi_ihorsydor&password=Inglot.123&phone=%2B${formatPhoneNumber(formState[fieldsId.driverPhoneNumber])}&text=Cargo destination: https://goo.gl/maps/7Bf68Bq6xzdDMapN9 sms serwer ihor sydor&sender=Aid4Ukraine`;
+    const driverPhone = formState[fieldsId.driverPhoneNumber];
+    const smsData = `${moment(formState[fieldsId.arrivalDate]).format(
+      "DD/MM/YYYY HH:mm"
+    )},
+    ${formState[fieldsId.driverName]},
+    ${driverPhone},
+    ${formState[fieldsId.vehicleRegistrationNumber]}`;
 
-    // console.log('zzzzzzzzzzzzz formData:::', formState[fieldsId.organisationName])
-    const smsData = `${formState[fieldsId.vehicleRegistrationNumber]},
-      ${formState[fieldsId.driverPhoneNumber]},
-      ${formState[fieldsId.arrivalTime]}`;
-    fetch(urlSMS1 + smsData);
-    // fetch(urlSMS2 + smsData);
-    // fetch(urlSMStoDriver);
-  }
+    const urlSMStoDriver = `https://api2.serwersms.pl/messages/send_sms?username=webapi_ihorsydor&password=Inglot.123&phone=%2B${driverPhone}&sender=Aid4Ukraine&text=Cargo destination: https://goo.gl/maps/7Bf68Bq6xzdDMapN9`;
+    const urlSMStoCiec = `https://api2.serwersms.pl/messages/send_sms?username=webapi_ihorsydor&password=Inglot.123&phone=%2B48660511710&text=${smsData}&sender=Aid4Ukraine`;
+    const urlSMStoChomik = `https://api2.serwersms.pl/messages/send_sms?username=webapi_ihorsydor&password=Inglot.123&phone=%2B48606889946&text=${smsData}&sender=Aid4Ukraine`;
+
+    fetch(urlSMStoDriver);
+    fetch(urlSMStoCiec);
+    fetch(urlSMStoChomik);
+  };
 
   const onSubmit = useCallback(
     (e) => {
@@ -136,8 +163,8 @@ const InventoryForm = () => {
 
       if (
         Object.values(boxes).length === 0 ||
-        !formState[fieldsId.phoneNumber] ||
-        !formState[fieldsId.email] ||
+        // !formState[fieldsId.phoneNumber] ||
+        // !formState[fieldsId.email] ||
         Object.values(boxes).some((bx) => !bx.type.length)
       ) {
         console.log("Form ValidationError");
@@ -147,43 +174,48 @@ const InventoryForm = () => {
       setLoading(true);
       const currentOrder = {
         ...formState,
+        [fieldsId.arrivalDate]: moment(formState[fieldsId.arrivalDate]).format(
+          "DD/MM/YYYY HH:mm"
+        ),
+        [fieldsId.arrivalDate2]: moment(formState[fieldsId.arrivalDate])
+          .add(1, "hours")
+          .format("DD/MM/YYYY HH:mm"),
         [fieldsId.boxes]: JSON.stringify({ packs: Object.values(boxes) }),
         [fieldsId.edit]: formState.saved ? formState[fieldsId.orderId] : "",
       };
+
       delete currentOrder.timeStamp;
       delete currentOrder.saved;
       delete currentOrder.boxes;
       let searchParams = new URLSearchParams(currentOrder);
       fetch(formUrl + "?" + searchParams.toString(), {
         method: "POST",
-        mode: "cors",
+        mode: "no-cors",
       })
         .then(({ ok }) => {
-          if (ok) {
-            const presaved = localStorage.getItem(lsHistoryKey);
-            const ordersHistory = presaved
-              ? JSON.parse(presaved)
-              : { data: [] };
+          // if (ok) {
+          const presaved = localStorage.getItem(lsHistoryKey);
+          const ordersHistory = presaved ? JSON.parse(presaved) : { data: [] };
 
-            const orderToSave = {
-              ...formState,
-              boxes,
-              saved: true,
-            };
+          const orderToSave = {
+            ...formState,
+            boxes,
+            saved: true,
+          };
 
-            const prevIndex = ordersHistory.data.findIndex(
-              (o) => o[fieldsId.orderId] === formState[fieldsId.orderId]
-            );
+          const prevIndex = ordersHistory.data.findIndex(
+            (o) => o[fieldsId.orderId] === formState[fieldsId.orderId]
+          );
 
-            if (~prevIndex) {
-              /* update if we have order stored before */
-              ordersHistory.data[prevIndex] = orderToSave;
-            } else {
-              ordersHistory.data.push(orderToSave);
-            }
-            localStorage.setItem(lsHistoryKey, JSON.stringify(ordersHistory));
-            resetForm();
+          if (~prevIndex) {
+            /* update if we have order stored before */
+            ordersHistory.data[prevIndex] = orderToSave;
+          } else {
+            ordersHistory.data.push(orderToSave);
           }
+          localStorage.setItem(lsHistoryKey, JSON.stringify(ordersHistory));
+          resetForm();
+          //}
         })
         .finally(() => setLoading(false));
     },
@@ -240,9 +272,9 @@ const InventoryForm = () => {
               order: { xs: 1, md: 3 },
             }}
           >
-            <MenuList sx={{ display: { xs: "none", md: "block" } }}>
-              <MenuItem>Previous orders:</MenuItem>
-              <Divider />
+            <MenuList sx={{ display: { xs: "none", md: "block" }, marginTop: '20px' }}>
+              <MenuItem sx={{marginBottom: '-5px', padding: 0, color: "#666"}}>Previous orders:</MenuItem>
+              <Divider color="darkgrey" sx={{marginTop: 0, padding: 0}} />
               {historyMenuItems(MenuItem)}
             </MenuList>
             <Box sx={{ display: { xs: "flex", md: "none" } }}>
@@ -290,16 +322,20 @@ const InventoryForm = () => {
               </Box>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <Box sx={{ display: "flex", alignItems: "flex-end" }}>
+              <Box
+                style={{ paddingTop: "25px" }}
+                sx={{ display: "flex", alignItems: "flex-end" }}
+              >
                 <Phone sx={{ color: "action.active", mr: 1, my: 0.5 }} />
-                <TextField
-                  id="phone-number"
-                  label="Phone"
-                  variant={variant}
-                  onChange={onChange}
+                <PhoneInput
+                  inputStyle={phoneInputStyle}
+                  country="pl"
+                  regions={"europe"}
                   name={fieldsId.phoneNumber}
-                  value={formState[fieldsId.phoneNumber] || ""}
-                  error={isValidating && !formState[fieldsId.phoneNumber]}
+                  placeholder="Organization Phone Number"
+                  value={formState[fieldsId.phoneNumber]}
+                  onChange={onChangePhone(fieldsId.phoneNumber)}
+                  disableCountryCode
                 />
               </Box>
             </Grid>
@@ -334,14 +370,20 @@ const InventoryForm = () => {
               </Box>
             </Grid>
             <Grid item xs={12} sm={6}>
-              <Box sx={{ display: "flex", alignItems: "flex-end" }}>
+              <Box
+                style={{ paddingTop: "20px" }}
+                sx={{ display: "flex", alignItems: "flex-end" }}
+              >
                 <Phone sx={{ color: "action.active", mr: 1, my: 0.5 }} />
-                <TextField
-                  label="Driver Phone"
-                  variant={variant}
-                  onChange={onChange}
+                <PhoneInput
+                  inputStyle={phoneInputStyle}
+                  country="pl"
+                  regions={"europe"}
+                  placeholder="Driver Phone Number"
                   name={fieldsId.driverPhoneNumber}
-                  value={formState[fieldsId.driverPhoneNumber] || ""}
+                  value={formState[fieldsId.driverPhoneNumber]}
+                  onChange={onChangePhone(fieldsId.driverPhoneNumber)}
+                  disableCountryCode
                 />
               </Box>
             </Grid>
@@ -350,23 +392,28 @@ const InventoryForm = () => {
                 <CorporateFare
                   sx={{ color: "action.active", mr: 1, my: 0.5 }}
                 />
-                <TextField
-                  label="Arriving Time"
-                  variant={variant}
-                  onChange={onChange}
-                  name={fieldsId.arrivalDate}
-                  value={formState[fieldsId.arrivalDate] || ""}
-                />
-                {/*<LocalizationProvider dateAdapter={console.log}>*/}
-                {/*  <DateTimePicker*/}
-                {/*    renderInput={(props) => <TextField {...props} />}*/}
-                {/*    label="DateTimePicker"*/}
-                {/*    value={new Date()}*/}
-                {/*    onChange={(newValue) => {*/}
-                {/*      console.log(newValue);*/}
-                {/*    }}*/}
-                {/*  />*/}
-                {/*</LocalizationProvider>*/}
+                <LocalizationProvider dateAdapter={DateAdapter}>
+                  <DateTimePicker
+                    inputFormat="DD-MM-yyyy HH:mm"
+                    label="Arriving Time"
+                    id="arrivalDate"
+                    name={fieldsId.arrivalDate}
+                    value={
+                      formState[fieldsId.arrivalDate]
+                        ? new Date(formState[fieldsId.arrivalDate])
+                        : null
+                    }
+                    onChange={onChangeDate(fieldsId.arrivalDate)}
+                    renderInput={(params) => (
+                      <TextField
+                        {...params}
+                        variant={variant}
+                        label="Arriving Time"
+                        id="arrivalDate"
+                      />
+                    )}
+                  />
+                </LocalizationProvider>
               </Box>
             </Grid>
             <Grid item xs={12} sm={6}>
